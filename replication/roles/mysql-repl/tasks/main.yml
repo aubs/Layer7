@@ -1,0 +1,2 @@
+- include: master_sat.yml 
+#- include: slave_sat.yml

@@ -1,0 +1,7 @@
+---
+- hosts: slave 
+  sudo: yes
+  roles:
+   # - common
+    - mysql-repl
+

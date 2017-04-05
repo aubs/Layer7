@@ -1,0 +1,5 @@
+mysql_repl_user: repluser
+mysql_repl_pass: replpass
+mysql_repl_master: Allstates.ca.com 
+mysql_repl_slave:  Allstates2.ca.com 
+master.File: " "

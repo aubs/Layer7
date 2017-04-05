@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: yes 
+  tasks:
+   - name:  GMU export  
+#     command: sh /home/ssgconfig/GMUfinal/GatewayMigrationUtility.sh 
+     shell: "sh /home/ssgconfig/GMUfinal/GatewayMigrationUtility.sh migrateOut -z  /home/ssgconfig/GMUfinal/argfiles/sources --all --plaintextEncryptionPassphrase 7layer --dest /tmp/test4.xml"

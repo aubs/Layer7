@@ -1,0 +1,47 @@
+---
+- name: put my.cnf
+  template:
+    src=/root/API/replication/my.cnf_master.j2
+    dest=/etc/my.cnf
+  register: last_result
+
+
+- name: restart mysql
+  service:
+    name=mysql
+    state=restarted
+
+- name: create replication user
+  mysql_user:
+    name={{ mysql_repl_user }}
+    password={{ mysql_repl_pass }}
+    host={{ mysql_repl_slave  }}
+    priv="*.*:REPLICATION SLAVE"
+  #  priv="*.*:REPLICATION SLAVE"
+
+- name: Reload privilege tables
+  command: 'mysql -ne "{{ item }}"'
+  with_items:
+    - FLUSH PRIVILEGES
+# Stop mysql slave thread
+- mysql_replication:
+    mode: stopslave
+
+# reset mysql slave thread
+- mysql_replication:
+    mode: resetslave
+
+#- name: Configure replication on the slave.
+#  mysql_replication:
+#   mode: changemaster
+#   master_host: "{{ mysql_repl_slave }}"
+#   master_user: "{{ mysql_repl_user }}"
+#   master_password: "{{ mysql_repl_pass }}"
+#   master_port: 3307
+#   master_log_file: "" 
+#   master_log_pos:  0
+
+# Start mysql slave thread
+- mysql_replication:
+    mode: startslave
+ 

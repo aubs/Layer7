@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks: 
+   - copy: 
+       src:  /root/API/mysql/MySQL-python-1.2.3-0.3.c1.1.el6.x86_64.rpm
+       dest: /home/ssgconfig
+   - name: install  mysql rpm from a local file
+     shell: rpm -ivh /home/ssgconfig/MySQL-python-1.2.3-0.3.c1.1.el6.x86_64.rpm
+#      name: /home/ssgconfig/MySQL-python-1.2.3-0.3.c1.1.el6.x86_64.rpm
+#       state: present

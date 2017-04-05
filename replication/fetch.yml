@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes 
+  tasks:
+   - fetch:  
+      src: /tmp/test4.xml
+      dest: /layer7/GMUtest4.xml
+      flat: yes

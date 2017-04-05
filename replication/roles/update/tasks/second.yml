@@ -1,0 +1,6 @@
+---
+- name: update data from cluster_info 
+  command: mysql {{ db_name }} "-e update cluster_info set name='Gateway2' where name='Test2';"  
+#  command: mysql {{ db_name }} "-e update cluster_info set name='Test2' where name='Gateway2';" 
+#  register: result
+

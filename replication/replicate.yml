@@ -1,0 +1,11 @@
+---
+- hosts: master
+  become: yes
+  roles:
+    - mysql-repl
+
+- hosts: slave 
+  become: yes
+  roles:
+    - mysql-repl_slave
+
